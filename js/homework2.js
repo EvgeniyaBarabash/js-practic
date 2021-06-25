@@ -184,3 +184,181 @@ return  newArray;
 
 //  16
 
+function calculateTotal(number) {
+let result = 0;
+for(let i=0; i<=number; i+=1){
+  result += i;
+  }
+
+  return result;
+};
+
+
+console.log(calculateTotal(3));
+console.log(calculateTotal(18));
+
+// 17
+
+const fruits7 = ['apple', 'plum', 'pear', 'orange'];
+
+for (let i =0; i<fruits7.length; i+=1) { 
+  const fruit = fruits7[i]; 
+  console.log(fruit);
+}
+
+
+// 18
+
+function calculateTotalPrice(order) {
+  let total = 0;
+  
+for(const number of order){
+  total += number;
+}
+  
+
+  return total;
+}
+console.log(calculateTotalPrice([12, 85, 37, 4]));
+
+// 19
+
+function findLongestWord(string) {
+  const newString = string.split(' ');
+  console.log(newString);
+  let longestWord = newString[0];
+for(const word of newString){
+  if(word.length>longestWord.length){
+    longestWord=word;
+  }
+}
+    
+return longestWord;
+}
+console.log(findLongestWord("The quick brown fox jumped over the lazy dog"));
+console.log(findLongestWord("Google do a roll"));
+console.log(findLongestWord("May the force be with you"));
+
+
+// 20
+function createArrayOfNumbers(min, max) {
+  const numbers = [];
+  for(let i=min; i<=max; i++){
+numbers.push(i);
+  }
+    return numbers;
+}
+console.log(createArrayOfNumbers(14, 17));
+
+// 21
+function filterArray(numbers, value) {
+  const newElement = [];
+
+for(let i=0; i<numbers.length; i++){
+  if(numbers[i]>value){
+newElement.push(numbers[i]);
+  }
+}
+  return newElement;
+}
+console.log(filterArray([1, 2, 3, 4, 5], 3));
+
+
+
+// 22
+
+// function getCommonElements(array1, array2) {
+// const newElement1 = [];
+//   for(const element of array1){
+//     if(array2.includes(element)){
+// newElement1.push(element);
+//     }
+// }
+//   return newElement1;
+// }
+// console.log(getCommonElements([24, 12, 27, 3], [12, 8, 3, 36, 27]));
+
+
+// 2вариант
+function getCommonElements(array2, array3) {
+const newElement2 = [];
+for(let i=0; i<array2.length; i++){
+  if(array3.includes(array2[i])){
+    newElement2.push(array2[i])
+  }
+}
+return newElement2;
+}
+console.log(getCommonElements([24, 12, 27, 3], [12, 8, 3, 36, 27]));
+
+
+// 23
+
+function filterArray1(numbers, value) {
+  const filteredNumbers = [];
+
+  for (const element of numbers) {
+    if (element > value) {
+      filteredNumbers.push(element);
+    }
+  }
+
+  return filteredNumbers;
+}
+console.log( filterArray1([12, 24, 8, 41, 76], 20));
+
+// 24
+function getEvenNumbers(start, end) {
+  const newNumbers = [];
+for(let i=start; i<=end; i++){
+  if(i%2===0){
+    newNumbers.push(i);
+  }
+}
+  return newNumbers;
+ 
+  }
+  console.log(getEvenNumbers(6, 12));
+
+  // 25 Дополни код так, чтобы в переменную number записывалось первое число от start до end, которое делится на 5 без остатка.
+  const start = 6;
+const end = 27;
+let number;
+
+for (let i = start; i < end; i += 1) {
+  if (i % 5 === 0) {
+    number = i;
+    break;
+  }
+}
+console.log(number);
+
+// 26 Выполни рефакторинг функции findNumber(start, end, divisor) так, чтобы она:
+
+// возвращала первое число от start до end, которое делится на divisor без остатка
+// не использовала оператор break
+// не использовала переменную number
+
+function findNumber(start, end, divisor) {
+  let number1;
+
+  for (let i = start; i < end; i += 1) {
+    if (i % divisor === 0) {
+      number1 = i;
+   return number1;
+    }
+  }
+
+}
+console.log(findNumber(16, 35, 7));
+
+// 27 
+function includes(array, value) {
+for(let element of array){
+  if(element===value)
+    return true;
+  }
+  return false;
+}
+
+console.log(includes([1, 2, 3, 4, 5], 3));
