@@ -277,3 +277,43 @@ result = toCheckText(val, 'world', 'light');
 
 val = `Weak people revenge. Strong people forgive. Intelligent People Ignore.`;
 result = toCheckText(val, 'world', 'love', 'peace');
+
+// task
+var isSquare = function(n){
+
+  if((Math.sqrt(n) % 1) == 0)
+    return true;
+  else
+    return false;
+}
+console.log(isSquare(25));
+
+// 2
+function rowSumOddNumbers(n) {
+  var result = 0;
+  
+  for (var i = 0; i < n; i++) {
+    result += n * n - n + 2 * i + 1;
+  }
+
+  return result;
+}
+console.log(rowSumOddNumbers(42));
+
+
+// 3
+function getMiddle(s)
+{
+  return s.slice((s.length-1)/2, s.length/2+1);
+}
+
+
+
+function getMiddle(s)
+{
+  return s.slice((s.length-1)/2, s.length/2+1);
+}
+    Test.assertEquals(getMiddle("test"),"es");
+    Test.assertEquals(getMiddle("testing"),"t");
+    Test.assertEquals(getMiddle("middle"),"dd");
+    Test.assertEquals(getMiddle("A"),"A");
