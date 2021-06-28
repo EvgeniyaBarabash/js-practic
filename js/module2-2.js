@@ -279,41 +279,149 @@ val = `Weak people revenge. Strong people forgive. Intelligent People Ignore.`;
 result = toCheckText(val, 'world', 'love', 'peace');
 
 // task
-var isSquare = function(n){
+// var isSquare = function(n){
 
-  if((Math.sqrt(n) % 1) == 0)
-    return true;
-  else
-    return false;
-}
-console.log(isSquare(25));
+//   if((Math.sqrt(n) % 1) == 0)
+//     return true;
+//   else
+//     return false;
+// }
+// console.log(isSquare(25));
 
-// 2
-function rowSumOddNumbers(n) {
-  var result = 0;
+// // 2
+// function rowSumOddNumbers(n) {
+//   var result = 0;
   
-  for (var i = 0; i < n; i++) {
-    result += n * n - n + 2 * i + 1;
+//   for (var i = 0; i < n; i++) {
+//     result += n * n - n + 2 * i + 1;
+//   }
+
+//   return result;
+// }
+// console.log(rowSumOddNumbers(42));
+
+
+// // 3
+// function getMiddle(s)
+// {
+//   return s.slice((s.length-1)/2, s.length/2+1);
+// }
+
+
+// // 
+// function getMiddle(s)
+// {
+//   return s.slice((s.length-1)/2, s.length/2+1);
+// }
+//     Test.assertEquals(getMiddle("test"),"es");
+//     Test.assertEquals(getMiddle("testing"),"t");
+//     Test.assertEquals(getMiddle("middle"),"dd");
+//     Test.assertEquals(getMiddle("A"),"A");
+
+
+    // 4
+    function likes(names) {
+  // for(let name of names){
+  //   console.log(name);}
+  if(names.length===1){
+    console.log(`${name} likes this`);
+  }else if(names.length===2){
+     console.log(`${names[0]} and ${names[1]} likes this`);
+  }
+     else if(names.length===3){
+     console.log(`${names[0]}, ${names[1]} and ${names[2]} likes this`);
+  }else if(names.length>=4){
+     console.log(`${names[0]}, ${names[1]} and ${names.length-2} others like this`);
+  }else{
+    console.log(`no one likes this`);
+  }
+  return name;
+}
+let result6 = likes(["Alex", "Jacob", "Mark", "Max"]);
+console.log(result6);
+
+
+ function likes2(names) {
+  if (names.length == 0) {
+    return "no one likes this";
+  } else if (names.length == 1) {
+    return names[0] + " likes this";  
+  } else if (names.length == 2) {
+    return names[0] + " and " + names[1] + " like this";
+  } else if (names.length == 3) {
+    return names[0] + ", " + names[1] + " and " + names[2] + " like this";
+  } else {
+    return names[0] + ", " + names[1] + " and " + (names.length - 2) + " others like this";
+  }
+}
+let result7 = likes2(["Alex", "Jacob", "Mark", "Max"]);
+console.log(result7);
+
+
+
+function likes1(names) {
+  names = names || [];
+  switch(names.length){
+    case 0: return 'no one likes this'; break;
+    case 1: return names[0] + ' likes this'; break;
+    case 2: return names[0] + ' and ' + names[1] + ' like this'; break;
+    case 3: return names[0] + ', ' + names[1] + ' and ' + names[2] + ' like this'; break;
+    default: return names[0] + ', ' + names[1] + ' and ' + (names.length - 2) + ' others like this';
+  }
+}
+let result8 = likes1(["Alex", "Jacob", "Mark", "Max"]);
+console.log(result8);
+
+// 5
+//FIRST SOLUTION
+
+String.prototype.toJadenCase = function () { 
+  return this.split(" ").map(function(word){
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }).join(" ");
+}
+
+//SECOND SOLUTION
+
+String.prototype.toJadenCase = function () {
+  return this.replace(/(^|\s)[a-z]/g, function(x){ return x.toUpperCase(); });
+};
+
+//THIRD SOLUTION
+
+String.prototype.toJadenCase = function () {
+
+  function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+  
+  return this.split(' ').map(capitalizeFirstLetter).join(' ');
+};
+
+// Not Jaden-Cased: "How can mirrors be real if our eyes aren't real"
+// Jaden-Cased:     "How Can Mirrors Be Real If Our Eyes Aren't Real"
+String.prototype.toJadenCase = function () {
+  var words = this.split(' ');
+
+  for(var i = 0, wordsLen = words.length; i < wordsLen; i++) {
+    words[i] = words[i][0].toUpperCase() + words[i].slice(1);
   }
 
-  return result;
-}
-console.log(rowSumOddNumbers(42));
-
-
-// 3
-function getMiddle(s)
-{
-  return s.slice((s.length-1)/2, s.length/2+1);
-}
+  return words.join(' ');
+};
 
 
 
-function getMiddle(s)
-{
-  return s.slice((s.length-1)/2, s.length/2+1);
-}
-    Test.assertEquals(getMiddle("test"),"es");
-    Test.assertEquals(getMiddle("testing"),"t");
-    Test.assertEquals(getMiddle("middle"),"dd");
-    Test.assertEquals(getMiddle("A"),"A");
+// Как получить рандомное значение массива
+const fruits = [
+'banana',
+'apple',
+'orange',
+'watermelon',
+'apple',
+'orange',
+'grape',
+'apple',
+];
+const randomFruits = fruits[Math.floor(Math.random(fruits)*fruits.length)];
+console.log(randomFruits);
