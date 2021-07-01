@@ -117,24 +117,21 @@ console.log(bestArray);
 
 //  деструктуризация
 
-const myFavouiteMusic = {
+const myFavouriteMusic = {
     rock:{
-        ['ramstain', 'hrthth'],
+        
+        bands:['ramstain', 'hrthth'],
+        songs:['hello my world'],
     },
+};
+// 2 уровня деструкторизация
+const {rock:{bands, songs}}=myFavouriteMusic;
+console.log(bands);
+bands.push('Linkin Park');
+console.log(bands);
+console.log(songs);
 
-}
-console.log(myFavouiteMusic.rock.bands);
-myFavouiteMusic.rock.push('Linkin Park');
-console.log(myFavouiteMusic.rock);
+// 1 уровня деструкторизация
+const {rock} = myFavouriteMusic;
+console.log(rock);
 
-
-
-
-
-const user = {
-    userName: 'Super User',
-    changeNames(){
-        console.log(this.userName);
-    }
-}
-console.log( );
