@@ -347,8 +347,290 @@ const{
   // 26 Паттерн «Объект настроек»
 
 function calculateMeanTemperature(forecast) {
-const{ todayLow, todayHigh, tomorrowHigh, tomorrowLow, } = forecast;
+const{ today:{low: todayLow, high:  todayHigh,},
+  tomorrow: {low: tomorrowLow, high: tomorrowHigh},} = forecast;
 
   return (todayLow + todayHigh + tomorrowLow + tomorrowHigh) / 4;
 };
 console.log(calculateMeanTemperature({ today: {low: 28, high: 32}, tomorrow: {low: 25, high: 29} }));
+
+// 27 Операция spread при передаче аргументов
+
+// const scores = [89, 64, 42, 17, 93, 51, 26];
+
+// const bestScore =Math.max(...scores);
+// const worstScore = Math.min(...scores);
+// console.log(bestScore);
+// console.log(worstScore);
+
+// 28
+const firstGroupScores = [64, 42, 93];
+const secondGroupScores = [89, 14, 51, 26];
+const thirdGroupScores = [29, 47, 18, 97, 81];
+
+const allScores = [...firstGroupScores, ...secondGroupScores, ...thirdGroupScores];
+const bestScore = Math.max(...allScores);
+const worstScore = Math.min(...allScores);
+console.log(allScores);
+console.log(bestScore);
+console.log(worstScore);
+
+// 30
+function makeTask(data) {
+  const completed = false;
+  const category = 'General';
+  const priority = 'Normal';  
+ let newData;
+ let newCategory;
+ let newPriority;
+if(data == null)
+{ newData={category:newCategory, priority:newPriority, completed:completed}
+} else{
+    if(data.category == null){
+      newCategory = category;
+    }else{newCategory = data.category}
+  
+
+  if(data.priority == null){
+    newPriority = priority} else{newPriority=data.priority};
+  
+newData={category:newCategory, priority:newPriority, text: data.text, completed: completed};
+}
+return newData;
+}
+console.log(makeTask({}));
+console.log(makeTask({ category: "Homemade", priority: "Low", text: "Take out the trash" }));
+
+// 31 Операция rest для сбора всех аргументов функции
+function add(...args){
+let sum=0;
+for(let i=0; i<args.length; i++){
+  sum+=args[i];
+}
+return sum;
+};
+
+console.log( add(15, 27));
+
+// 32
+function addOverNum(firstNumber, ...args) {
+  let total = 0;
+
+  for (const arg of args) {
+    if(arg>firstNumber){
+      total += arg
+    }
+    };
+  
+  return total;
+};
+
+console.log(addOverNum(50, 15, 27));
+console.log(addOverNum(10, 12, 4, 11, 48, 10, 8));
+
+// 33
+// function findMatches(array, ...args) {
+//   const matches = []; 
+//   for(let i=0; i<array.length; i++){
+//     if(args.includes(array[i])){
+//    matches.push(array[i]);
+//     }
+//   }
+// return matches;
+// }
+console.log(findMatches([1, 2, 3, 4, 5], 1, 8, 2, 7));
+console.log(findMatches([10, 24, 41, 6, 9, 19], 24, 11, 9, 23, 41));
+
+function findMatches(array, ...args){
+  const matches = [];
+  for(const arg of args){
+    if(array.includes(arg)){
+      matches.push(arg);
+    }
+  }
+  return matches;
+}
+
+// 34 Методы объекта Объекты могут хранить не только данные, 
+// но и функции для работы с этими данными - методы. 
+// Если значение свойства это функция, такое свойство называется методом объекта.
+
+// const bookShelf = {
+//   books: ['The last kingdom', 'The guardian of dreams'],
+//   getBooks() {
+//     return 'Returning all books';
+//   },
+//   addBook(bookName) {
+//     return `Adding book ${bookName}`;
+//   },
+
+// };
+
+// 35 Доступ к свойствам объекта в его методах (this)
+const bookShelf = {
+  books: ["Последнее королевство"],
+  getBooks() {
+    return this.books;
+  },
+  addBook(bookName) {
+    this.books.push(bookName);
+  },
+  removeBook(bookName) {
+    const bookIndex = this.books.indexOf(bookName);
+    this.books.splice(bookIndex, 1);
+  },
+};
+
+console.log(bookShelf.getBooks()); // []
+bookShelf.addBook("Мгла");
+bookShelf.addBook("Страж снов");
+console.log(bookShelf.getBooks()); // ["Последнее королевство", "Мгла", "Страж снов"]
+bookShelf.removeBook("Мгла");
+console.log(bookShelf.getBooks()); // ["Последнее королевство", "Страж снов"]
+
+// const bookShelf = {
+//   books: ['The last kingdom', 'Haze', 'The guardian of dreams'],
+//   getBooks() {
+//     return this.books;
+//   },
+//   updateBook(oldName, newName) {
+//    const bookIndex = this.books.indexOf(oldName);
+//     this.books.splice(bookIndex, 1, newName);
+//   }
+// };
+// bookShelf.updateBook("Haze", "Dungeon chronicles");
+// console.log(bookShelf.getBooks());
+// bookShelf.updateBook("The last kingdom", "Dune");
+// console.log(["Dune", "Haze", "The guardian of dreams"]);
+
+// 36 Задача. Лавка зелий «У старой жабы»
+
+// const atTheOldToad = {
+//   potions: ['Speed potion', 'Dragon breath', 'Stone skin'],
+// getPotions(){
+//   return this.potions;
+// },
+// addPotions(potionName){
+//   this.potions.push(potionName);
+// },
+// removePotions(potionName){
+//   const potionIndex = this.potions.indexOf(potionName);
+// this.potions.splice(potionIndex, 1);
+// },
+// updatePotionName(oldName, newName){
+//   const potionIdex2 = this.potions.indexOf(oldName);
+//   this.potions.splice(potionIdex2, 1, newName);
+// }
+// };
+// console.log(atTheOldToad.getPotions());
+// atTheOldToad.addPotions("Invisibility");
+// console.log(atTheOldToad.getPotions());
+// atTheOldToad.addPotions('Power potion');
+// console.log(atTheOldToad.getPotions());
+// atTheOldToad.removePotions("Dragon breath");
+// console.log(atTheOldToad.getPotions());
+// atTheOldToad.removePotions("Speed potion");
+// console.log(atTheOldToad.getPotions());
+// atTheOldToad.updatePotionName("Dragon breath", "Polymorth");
+// console.log(atTheOldToad.getPotions());
+// atTheOldToad.updatePotionName("Stone skin", "Invisibility");
+// console.log(atTheOldToad.getPotions());
+
+// 41 
+// const atTheOldToad = {
+//   potions: [
+//     { name: 'Speed potion', price: 460 },
+//     { name: 'Dragon breath', price: 780 },
+//     { name: 'Stone skin', price: 520 },
+//   ],
+  // Change code below this line
+//   getPotions() {
+//     return this.potions;
+//   },
+//   addPotion(potionName) {
+//     if (this.potions.includes(potionName)) {
+//       return `Potion ${potionName} is already equipped!`;
+//     }
+
+//     this.potions.push(potionName);
+//   },
+//   removePotion(potionName) {
+//    const{potions} = this;
+//    for(const potion of potions){
+//      if(potion.name===potionName){
+//         const potionIndex = this.potions.indexOf(potion);
+//        this.potions.splice(potionIndex, 1);
+//        return potion;
+//      }
+//     }
+//       return `Potion ${potionName} is not in inventory!`;
+    
+//   },
+//   updatePotionName(oldName, newName) {
+//      const { potions } = this;
+//     for (const potion of potions) {
+//       if (potion.name ===oldName) {
+//         return potion.name=newName;
+//       }
+//     }
+//     return `Potion ${oldName} is not in inventory!`;
+//   },
+// };
+// console.log(atTheOldToad.getPotions());
+// atTheOldToad.addPotion({ name: "Invisibility", price: 620 });
+// console.log(atTheOldToad.getPotions());
+// atTheOldToad.addPotion({ name: "Power potion", price: 270 });
+// console.log(atTheOldToad.getPotions());
+//  atTheOldToad.removePotion("Dragon breath");
+//  console.log(atTheOldToad.getPotions());
+// atTheOldToad.removePotion("Speed potion");
+// console.log(atTheOldToad.getPotions());
+// atTheOldToad.updatePotionName("Dragon breath", "Polymorth");
+// console.log(atTheOldToad.getPotions());
+// atTheOldToad.updatePotionName("Stone skin", "Invulnerability potion");
+// console.log(atTheOldToad.getPotions());
+
+
+const atTheOldToad = {
+  potions: [
+    { name: 'Speed potion', price: 460 },
+    { name: 'Dragon breath', price: 780 },
+    { name: 'Stone skin', price: 520 },
+  ],
+getPotions(){
+  return this.potions;
+},
+addPotions(newPotions){
+  if(this.potions.includes(newPotions)){
+    return `This ${newPotions} is alredy aqiupped`;
+  }
+  return this.potions.push(newPotions);
+},
+removePotion(potionName) {
+    const { potions } = this;
+    for (const potion of potions) {
+      if (potion.name === potionName) {
+        potions.splice(potions.indexOf(potion), 1);
+        return potion;
+      }
+    }
+    return `Potion ${potionName} is not in inventory!`;
+  },
+updatePotions(oldName, newName){
+    const{potions}=this;
+  for(const potion of potions){
+    if(potion.name===oldName){
+      return potion.name=newName;
+    }  
+     
+  }
+  return `Potion ${oldName} is not inventory`;
+},
+};
+// console.log(atTheOldToad.getPotions());
+// atTheOldToad.addPotions({ name: "Invisibility", price: 620 });
+console.log(atTheOldToad.getPotions());
+atTheOldToad.removePotion('Dragonsss breath');
+console.log(atTheOldToad.getPotions());
+atTheOldToad.updatePotions("Dragon breath", "Polymorth");
+console.log(atTheOldToad.getPotions());
