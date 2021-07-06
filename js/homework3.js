@@ -380,23 +380,6 @@ function makeTask(data) {
   const completed = false;
   const category = 'General';
   const priority = 'Normal';  
-//  let newData;
-//  let newCategory;
-//  let newPriority;
-// // if(data == null)
-// { newData={category:newCategory, priority:newPriority, completed:completed}
-// } else{
-//     if(data.category == null){
-//       newCategory = category;
-//     }else{newCategory = data.category}
-  
-
-//   if(data.priority == null){
-//     newPriority = priority} else{newPriority=data.priority};
-  
-// newData={category:newCategory, priority:newPriority, text: data.text, completed: completed};
-// }
-// return newData;
 const newData = { completed, category, priority, ...data };
 return newData;
 }
