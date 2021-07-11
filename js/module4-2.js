@@ -1,19 +1,19 @@
 // Замыкания
 
-// function createCounter() {
-//   // LEXICAL ENVIRONMENT
-//   let current = 0;
-//   function increment(value) {
-//     return (current += value);
-//   }
-//   function decrement(value) {
-//     if (current === 0) return;
-//     return (current -= value);
-//   }
-//   // LEXICAL ENVIRONMENT
-//   return { increment, decrement };
-// }
-// export default createCounter;
+function createCounter() {
+  // LEXICAL ENVIRONMENT
+  let current = 0;
+  function increment(value) {
+    return (current += value);
+  }
+  function decrement(value) {
+    if (current === 0) return;
+    return (current -= value);
+  }
+  // LEXICAL ENVIRONMENT
+  return { increment, decrement };
+}
+export default createCounter;
 
 // CARRING(карированная функция, матрешка)
 
@@ -96,3 +96,71 @@ const user2 = {
 
 };
 getUserInfo(user.showInfo.bind(user2));
+
+
+function getResult(discount, price){
+    return (price*(100 - parseInt(discount)))/100;
+};
+console.log(getResult('20%',100));
+console.log(getResult('15%',300));
+
+function getResult2(discount){
+    return(price) =>{
+        return (price*(100 - parseInt(discount)))/100;
+    }
+};
+const discount = getResult2('10%');
+console.log(discount(100));
+console.log(discount(1000));
+const discount50 = getResult2('50%');
+console.log(discount50(100));
+
+
+const user5={
+    name:'Evgeniya',
+    age:31,
+    showMe(){
+        console.log(`User ${this.name} is age ${this.age}`);
+    }
+};
+user5.showMe();
+
+const user6={
+    name:'Sasha',
+    age:35,
+};
+user5.showMe.call(user6);
+
+function hello(cb) {
+cb();
+};
+hello(user5.showMe.bind(user5));
+
+
+const fnA = function (message, callback) {
+    console.log(message);
+    console.log(callback);
+    callback(100);
+    
+};
+const fnB = function (numbers) {
+    console.log(`эта функция вызывается fnB`, numbers);
+    
+};
+
+
+
+const doMAth= function (a,b, callback2 ) {
+    const result = callback2(a,b);
+    console.log(result);
+};
+const add2  = function (x,y) {
+    return x*y;
+ 
+};
+const sub2  = function (x,y) {
+    return x-y;
+ 
+};
+doMAth(10,2,add2);
+doMAth(10,2,sub2);

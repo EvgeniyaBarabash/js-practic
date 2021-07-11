@@ -497,3 +497,82 @@ console.log(pizzaPalaceMessage);
 
 // console.log(service.mailingList); // ['mango@mail.com', 'ajax@jmail.net', 'kiwi@mail.uk']
 
+// замыкание
+// function makeFunc() {
+//   let name= 'Mozilla';
+//   function displayName() {
+//     alert (name);
+    
+//   }
+//   return displayName;
+// };
+// let myFunc = makeFunc();
+// myFunc();
+
+
+
+
+const greet = function (guest, stars) {
+  return `${guest}, welcome to ${stars}-star ${this.name}!`;
+};
+
+const hotel = { name: 'Resort Hotel' };
+const motel = { name: 'Sunlight Motel' };
+
+console.log(greet.call(hotel, 'Mango', 5));
+// "Mango, welcome to 5-star Resort Hotel!"
+
+console.log(greet.call(motel, 'Poly', 4));
+// "Poly, welcome to 4-star Sunlight Motel!"
+
+
+const greet2 = function (guest1, stars1) {
+  return `${guest1}, welcome to ${stars1}-star ${this.name}`
+  
+};
+const hotel1 = {name: 'Paradise hotel'};
+const helloHotel = greet2.bind(hotel1);
+console.log(helloHotel('Mark', 5));
+
+const repeat = function (n, action) {
+  for(let i=0; i<n; i++){
+   action(i);
+  }
+  
+};
+
+const arrays = [];
+repeat(5, value => {
+  arrays.push('array ${value+1}');
+});
+console.log(arrays);
+
+// Функция обратного вызова
+
+const fruits1 = [
+  { name: 'apples', quantity: 200, isFresh: true },
+  { name: 'grapes', quantity: 150, isFresh: false },
+  { name: 'bananas', quantity: 100, isFresh: true },
+];
+
+const filter1= function (array, test) {
+  const filterElement = [];
+  for(const element of array){
+const passed = test(element);
+if(passed){
+  filterElement.push(element);
+}
+
+  }
+return filterElement;
+};
+const freshFruit = filter1(fruits1, fruit => fruit.isFresh);
+console.log(freshFruit);
+
+const richFruit = filter1(fruits1, fruit => fruit.quantity>=150);
+console.log(richFruit);
+
+const appleName = filter1(fruits1, function test1(fruit){
+  return fruit.isFresh;
+} );
+console.log(appleName);
