@@ -529,41 +529,42 @@ const atTheOldToad = {
     { name: 'Stone skin', price: 520 },
   ],
   getPotions() {
-    return this.potions;
+    return this.potions
   },
   addPotion(potionName) {
     if (this.potions.includes(potionName)) {
-      return `Potion ${potionName} is already equipped!`;
+      return `Potion ${potionName} is already equipped!`
     }
-
-    this.potions.push(potionName);
+    this.potions.push(potionName)
   },
   removePotion(potionName) {
-   const{potions} = this;
-   for(const potion of potions){
-     if(potion.name===potionName){
-        const potionIndex = this.potions.indexOf(potion);
-       this.potions.splice(potionIndex, 1);
-       return potion;
-     }
-    }
-      return `Potion ${potionName} is not in inventory!`;
-    
-  },
-  updatePotionName(oldName, newName) {
-     const { potions } = this;
-    for (const potion of potions) {
-      if (potion.name ===oldName) {
-        return potion.name=newName;
+    const { potions } = this
+    // console.log(potions)
+    for (let potion of potions) {
+      if (potion.name === potionName) {
+        const potionIndex = this.potions.indexOf(potion)
+        this.potions.splice(potionIndex, 1)
+        // return potion
       }
     }
-    return `Potion ${oldName} is not in inventory!`;
+    return `Potion ${potionName} is not in inventory!`
   },
-};
-console.log(atTheOldToad.getPotions());
-atTheOldToad.addPotion({ name: "Invisibility", price: 620 });
-atTheOldToad.addPotion({ name: 'Speed potion', price: 460 });
-console.log(atTheOldToad.getPotions());
+  updatePotionName(oldName, newName) {
+    const { potions } = this
+    for (const potion of potions) {
+      if (potion.name === oldName) {
+        return (potion.name = newName)
+      }
+    }
+    return `Potion ${oldName} is not in inventory!`
+  },
+}
+console.log(atTheOldToad.removePotion('Speed potion'))
+
+// console.log(atTheOldToad.getPotions());
+// atTheOldToad.addPotion({ name: "Invisibility", price: 620 });
+// atTheOldToad.addPotion({ name: 'Speed potion', price: 460 });
+// console.log(atTheOldToad.getPotions());
 // atTheOldToad.addPotion({ name: "Power potion", price: 270 });
 // console.log(atTheOldToad.getPotions());
  atTheOldToad.removePotion("рапра");
