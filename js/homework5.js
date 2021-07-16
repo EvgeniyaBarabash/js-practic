@@ -1,49 +1,49 @@
 // Прототипное наследоване
-const objA = {
-  x: 2,
-};
-console.log(`objA`, objA);
-console.log(objA.hasOwnProperty("x"));
-const objB = Object.create(objA);
-console.log(`objB`, objB);
-objB.y = 5;
-console.log(objB.y);
-console.log(objB.x);
-const objC = Object.create(objB);
-objC.z = 10;
-console.log(`objC`, objC);
-// у objC ссылка на objB, у objB ссылка на objА, а у objА ссылка на все главное хранилище
+// const objA = {
+//   x: 2,
+// };
+// console.log(`objA`, objA);
+// console.log(objA.hasOwnProperty("x"));
+// const objB = Object.create(objA);
+// console.log(`objB`, objB);
+// objB.y = 5;
+// console.log(objB.y);
+// console.log(objB.x);
+// const objC = Object.create(objB);
+// objC.z = 10;
+// console.log(`objC`, objC);
+// // у objC ссылка на objB, у objB ссылка на objА, а у objА ссылка на все главное хранилище
 
-console.log(objC.x);
-console.log(objC.hasOwnProperty("x"));
+// console.log(objC.x);
+// console.log(objC.hasOwnProperty("x"));
 
-// Функции-конструкторы(название имя сущиствительное с большой буквы)
+// // Функции-конструкторы(название имя сущиствительное с большой буквы)
 
-// new - создание экземпляра(создается под капотом пустой обьект)
+// // new - создание экземпляра(создается под капотом пустой обьект)
 
-const Guest = function (name, room) {
-  this.name = name;
-  this.room = room;
-};
-const mango = new Guest("Mango", 28);
-const orange = Object.create(mango);
-const pear = new Guest("Pear", 33);
-const pink = Object.create(pear);
-console.log(pink);
-console.log(pear);
-console.log(orange);
-console.log(mango);
-console.log(Guest.prototype);
-console.log(mango.hasOwnProperty("age"));
-console.log(mango.hasOwnProperty("mango"));
-console.log(mango.hasOwnProperty("Mango"));
+// const Guest = function (name, room) {
+//   this.name = name;
+//   this.room = room;
+// };
+// const mango = new Guest("Mango", 28);
+// const orange = Object.create(mango);
+// const pear = new Guest("Pear", 33);
+// const pink = Object.create(pear);
+// console.log(pink);
+// console.log(pear);
+// console.log(orange);
+// console.log(mango);
+// console.log(Guest.prototype);
+// console.log(mango.hasOwnProperty("age"));
+// console.log(mango.hasOwnProperty("mango"));
+// console.log(mango.hasOwnProperty("Mango"));
 
-Guest.prototype.showGuestInfo = function () {
-  console.log(`Guest ${this.name} from ${this.room}`);
-};
-mango.showGuestInfo();
-orange.showGuestInfo();
-pear.showGuestInfo();
+// Guest.prototype.showGuestInfo = function () {
+//   console.log(`Guest ${this.name} from ${this.room}`);
+// };
+// mango.showGuestInfo();
+// orange.showGuestInfo();
+// pear.showGuestInfo();
 
 // example 2
 const hotel = function (name, stars, capacity) {
@@ -890,6 +890,71 @@ console.log(Car.checkPrice(bmw.price)); // Внимание! Цена превы
 // console.log(writer); // { email: 'mango@mail.com', posts: [] }
 // console.log(writer.email); // 'mango@mail.com'
 
+// class User {
+//   email;
+
+//   constructor(email) {
+//     this.email = email;
+//   }
+
+//   get email() {
+//     return this.email;
+//   }
+
+//   set email(newEmail) {
+//     this.email = newEmail;
+//   }
+// }
+
+// class Admin extends User {
+// accessLevel;
+
+//  constructor({email, accessLevel}){
+//  super(email);
+//  this.accessLevel=accessLevel;
+//  }
+//  get accessLevel(){
+//    return this.accessLevel;
+//  };
+//  set accessLevel(newAccessLevel){
+//  this.accessLevel = newAccessLevel;
+// }
+//   static AccessLevel = {
+//     BASIC: 'basic',
+//     SUPERUSER: 'superuser'
+//   };
+// };
+
+// const mango6= new Admin({
+//   email: 'mango@mail.com',
+//   accessLevel: Admin.AccessLevel.SUPERUSER
+// });
+
+// console.log(mango6.email); // mango@mail.com
+// console.log(mango6.accessLevel); // superuser
+
+// 19 Методы дочернего класса - В дочернем классе можно объявлять методы которые будут доступны только его экземплярам.
+// Представим что выше есть объявление класса User
+
+// class ContentWriter extends User {
+//   posts;
+
+//   constructor({ email, posts }) {
+//     super(email);
+//     this.posts = posts;
+//   }
+
+//   addPost(post) {
+//     this.posts.push(post);
+//   }
+// }
+
+// const writer = new ContentWriter({ email: 'mango@mail.com', posts: [] });
+// console.log(writer); // { email: 'mango@mail.com', posts: [] }
+// console.log(writer.email); // 'mango@mail.com'
+// writer.addPost('post-1');
+// console.log(writer.posts); // ['post-1']
+
 class User {
   email;
 
@@ -905,30 +970,38 @@ class User {
     this.email = newEmail;
   }
 }
-
 class Admin extends User {
-accessLevel;
-
- constructor({email, accessLevel}){
- super(email);
- this.accessLevel=accessLevel;
- }
- get accessLevel(){
-   return this.accessLevel;
- };
- set accessLevel(newAccessLevel){
- this.accessLevel = newAccessLevel;
-}
+  
+ 
   static AccessLevel = {
     BASIC: 'basic',
     SUPERUSER: 'superuser'
   };
-};
+  
+  accessLevel;
+  blacklistedEmails=[];
+  constructor({ email, accessLevel}) {
+    super(email);
+    this.accessLevel = accessLevel;
+  };
+  
+  blacklist(email){
+   return this.blacklistedEmails.push(email);
+  };
+  isBlacklisted(email){
+    return this.blacklistedEmails.includes(email)
+  };
+  
+}
 
-const mango6= new Admin({
+const mango = new Admin({
   email: 'mango@mail.com',
   accessLevel: Admin.AccessLevel.SUPERUSER
 });
 
-console.log(mango6.email); // mango@mail.com
-console.log(mango6.accessLevel); // superuser
+console.log(mango.email); // mango@mail.com
+console.log(mango.accessLevel); // superuser
+mango.blacklist('poly@mail.com');
+console.log(mango.blacklistedEmails); // 'poly@mail.com'
+console.log(mango.isBlacklisted('mango@mail.com')); //  false
+console.log(mango.isBlacklisted('poly@mail.com')); // true 
