@@ -164,3 +164,78 @@ const sub2  = function (x,y) {
 };
 doMAth(10,2,add2);
 doMAth(10,2,sub2);
+
+// Замыкание
+// Напишите функцию sum, которая работает таким образом: sum(a)(b) = a+b.
+ 
+// function sum(a) {
+//     return function(b) {
+//         return a+b;
+// }
+// };
+// alert( sum(1)(2) ); // 3
+// alert( sum(5)(-1) ); // 4
+// 2 округлятор
+const rounder = function(piaces){
+    return function(number){
+        return Number(number.toFixed(piaces))
+    };
+
+};
+const rounder2 = rounder(2);
+const rounder3 = rounder(3);
+console.log(rounder2(2.5547));
+console.log(rounder3(2.5547));
+
+
+// приватные переменные
+
+const myLibFacory = function(){
+    let value = 0;
+    const add = function(num){
+value+=num;
+    };
+    return {
+        add:add,
+        getValue(){
+            return value;
+        },
+    };
+};
+const myLib = myLibFacory();
+console.log(myLib);
+console.log(myLib.getValue());
+myLib.add(10);
+console.log(myLib.getValue());
+
+
+// приватные функции
+ const salaryManagerFatory = function(employeeName, baseSalary = 0){
+     let salary = baseSalary;
+     return {
+         raise(amount){
+             if(amount>1000){
+                 return `Ты офигел???`;
+             };
+           salary +=amount;
+         },
+         lower(amount){
+            return salary -=amount;
+         },
+         current(){
+             return `Текущая зарплата ${employeeName}-${salary}`;
+
+         }, 
+     };
+ };
+  const salaryManager = salaryManagerFatory('Mango', 5000);
+  
+//   console.log(salaryManager.salary); такой функцией мы не можем достучаться к зарплате и изменить ее
+console.log(salaryManager.current());
+salaryManager.raise(1000);
+console.log(salaryManager.current());
+salaryManager.raise(5000);
+console.log(salaryManager.raise(5000));
+console.log(salaryManager.current());
+salaryManager.lower(5000);
+console.log(salaryManager.current());

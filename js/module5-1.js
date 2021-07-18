@@ -214,3 +214,141 @@ const poly = new Weapon('Poly', 200, 'sword');
 console.log(poly);
 poly.gainXp(500);
 poly.attack();
+
+
+// Example3
+
+function MainProduct(title='product',category='cat',price=0) {
+  this.title=title;
+  this.category=category;
+  this.price=price;
+  
+};
+MainProduct.prototype.showTitle = function () {
+  console.log(this.title);
+  
+};
+MainProduct.prototype.showCategory= function () {
+  console.log(this.category);
+  
+};
+MainProduct.prototype.showPrice = function () {
+  console.log(this.price);
+  
+};
+MainProduct.prototype.updateTitle = function (value) {
+  return this.title=value;
+
+  
+};
+MainProduct.prototype.updateCategory= function (value) {
+  return this.category=value;
+  
+};
+MainProduct.prototype.apdatePrice = function (value) {
+  return this.price=value;
+  
+};
+// создать конструктор на базе исходного для весовых товаров
+
+function WeighProduct(title, category, price, weigth) {
+  MainProduct.call(this, title, category, price);
+  this.weigth=weigth
+};
+WeighProduct.prototype=Object.create(MainProduct.prototype);
+WeighProduct.prototype.constructor=constructor;
+WeighProduct.prototype.incrementWeigh = function (value) {
+  return this.weigth +=value; 
+  
+};
+WeighProduct.prototype.decrementWeigh = function (value) {
+  return this.weigth -= value; 
+};
+  
+const sugar =new WeighProduct('sugar', 'sweets', 25, 1000);
+console.log(sugar);
+
+// создать конструтор на базе исходного для товаров поштучно
+  
+function CountProduct(title, category, price, amount) {
+  MainProduct.call(this, title, category, price);
+  this.amount = amount;
+};
+CountProduct.prototype=Object.create(MainProduct);
+CountProduct.prototype.constructor = constructor;
+CountProduct.prototype.incrementCount = function (value){
+  return this.amount += value;
+};
+CountProduct.prototype.decrementCount = function (value){
+  if(this.amount>=0) return (this.amount-=value)
+  return this.amount -= value;
+};
+
+const salt = new WeighProduct('salt', 'seasoning', 10, 1);
+console.log(salt);
+console.log(salt.incrementWeigh(2));
+console.log(salt.decrementWeigh(2));
+
+// throuth the class
+class MainProduct2{
+  constructor(title='product',category='cat',price=0){
+    this._title=title;
+  this._category=category;
+  this._price=price;
+  };
+  get title(){
+    console.log(this._title);
+    
+  };
+  get category(){
+    console.log(this._category);
+    
+  };
+  get price(){
+    console.log(this._price);
+  };
+  set title(value){
+    return this._title=value;
+  };
+  set category(value){
+    return this._category=value;
+  }
+  set price(value){
+    return this._price=value;
+  }
+};
+
+// создать конструктор на базе исходного для весовых товаров
+
+class WeighProduct2 extends MainProduct2{
+  constructor(title, category, price, weigth){
+  super(title, category, price);
+  this.weigth = weigth;
+}
+incrementWeigh(value){
+  return this.weigth +=value; 
+  
+};
+decrementWeigh(value){
+  return this.weigth -= value; 
+}
+};
+const bananas = new WeighProduct2('bananas', 'fruits', 35, 3000);
+console.log(bananas);
+
+class CountProduct2 extends MainProduct2{
+  constructor(title, category, price, amount){
+    super(title, category, price);
+    this.amount=amount;
+  };
+  incrementCount(value){
+    return this.amount += value;
+  };
+  decrementCount(value){
+    return this.amount -= value;
+  };
+};
+ const orange = new CountProduct2('orange', 'fruits', 50, 1);
+ console.log(orange);
+ console.log(orange.incrementCount(5));
+ console.log(orange.decrementCount(2));
