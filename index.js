@@ -13,4 +13,5 @@
 // import './js/counter.js';
 // import './js/homework5.js';
 // import './js/module5-1.js';
-import './js/module6-1.js';
+// import './js/module6-1.js';
+ import './js/homework6.js';
