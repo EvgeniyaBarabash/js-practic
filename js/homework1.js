@@ -89,6 +89,10 @@ isAdult(20);
 isAdult(14);
 isAdult(8);
 isAdult(37);
+
+
+
+
 // пароль
 function isValidPassword(password) {
   const SAVED_PASSWORD = "jqueryismyjam";
@@ -101,6 +105,8 @@ function isValidPassword(password) {
 isValidPassword("mangodab3st");
 isValidPassword("kiwirul3z");
 isValidPassword("jqueryismyjam");
+
+
 
 function checkAge(age) {
   let message;
