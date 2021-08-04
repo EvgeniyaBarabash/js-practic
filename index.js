@@ -15,4 +15,5 @@
 // import './js/module5-1.js';
 // import './js/module6-1.js';
 //  import './js/homework6.js';
-import './js/module6-2.js';
+// import './js/module6-2.js';
+import'./js/module-7.1.js';

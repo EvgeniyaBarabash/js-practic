@@ -7,7 +7,100 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>I LOVE JAVA SCRIPT!</h1>
+    <h1 class="title">I LOVE JAVA SCRIPT!</h1>
+    <div class="hero js-color-picker"></div>
+    <div class="js-products"></div>
+    <ul id="categories">
+      <li class="item">
+        <h2 class="title">Животные</h2>
+    
+        <ul>
+          <li>Кот</li>
+          <li>Хомяк</li>
+          <li>Лошадь</li>
+          <li>Попугай</li>
+        </ul>
+      </li>
+      <li class="item">
+        <h2>Продукты</h2>
+    
+        <ul>
+          <li>Хлеб</li>
+          <li>Петрушка</li>
+          <li>Творог</li>
+        </ul>
+      </li>
+      <li class="item">
+        <h2>Технологии</h2>
+    
+        <ul>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>React</li>
+          <li>Node</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="actions js-actions">
+      <button type="button" data-action="add">Создать</button>
+      <button type="button" data-action="remove">Удалить</button>
+      <button type="button" data-action="edit">Редактировать</button>
+    </div>
+    <div>
+      <button class="js-target-btn" type="button" >Целевая кнопка</button>
+      <button class="js-add-listener" type="button">Добавить слушатель</button>
+      <button class="js-remove-listener" type="button">Снять слушатель</button>
+    </div>
+<!-- События сабмита формы -->
+<form class="js-register-form" autocomplete="off">
+  <div role="group">
+    <label>Почта <input type="email" name="email"></label>
+    <label>Пароль <input type="password" name="password"></label>
+
+  </div>
+  <br/>
+  <div role='group'>
+    <b>Тип подписки:</b>
+    <label>
+      <input type="radio" name="subscription" value='free'>
+      Free
+    </label>
+    <label>
+      <input type="radio" name="subscription" value='basic'>
+      Basic
+    </label>
+    <label>
+      <input type="radio" name="subscription" value='pro'>
+      Pro
+    </label>
+  </div>
+  <br/>
+  <button type="submit">Зарегестрироваться</button>
+</form>
+
+<!-- События инпутов -->
+<div>
+<label>Имя
+  <input type="text" class="js-input">
+</label>
+<p>
+  <label>
+    <input type="checkbox" class="js-license"> Принимаю лиинзонноу соглашение
+  </label>
+</p>
+<button type="submit" disabled class="js-button">Зарегестрироваься как <span>Аноним</span></button>
+</div>
+
+<!-- Событие клавиатуры -->
+<button class="js-clear">Очистить</button>
+<p class="ouput js-output"></p>
+
+
+
+
+
+    <img class='image' src="https://images.pexels.com/photos/140134/pexels-photo-140134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="White and Black Long Fur Cat" width="500">
     <script src="./index.js" type="module"></script>
   </body>
 </html>
