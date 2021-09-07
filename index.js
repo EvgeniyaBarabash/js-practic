@@ -19,3 +19,4 @@
 // import'./js/module-7.1.js';
 // import './js/module-8.1.js';
 // import'./js/throttle-debounce.js';
+import './js/11-promice.js';
